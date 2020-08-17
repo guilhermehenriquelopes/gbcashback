@@ -1,17 +1,27 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
-WORKDIR /app
-
+# NuGet restore
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /src
+COPY *.sln .
+COPY GBCashback.Tests/*.csproj GBCashback.Tests/
+COPY GBCashback/*.csproj GBCashback/
+RUN dotnet restore
 COPY . .
-RUN dotnet restore 
-RUN dotnet build --no-restore -c Release -o /app
 
+# testing
+FROM build AS testing
+WORKDIR /src/GBCashback
+RUN dotnet build
+WORKDIR /src/GBCashback.Tests
+RUN dotnet test
+
+# publish
 FROM build AS publish
-RUN dotnet publish --no-restore -c Release -o /app
+WORKDIR /src/GBCashback
+RUN dotnet publish -c Release -o /src/publish
 
-FROM base AS final
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS runtime
 WORKDIR /app
-COPY --from=publish /app .
-
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet GBCashbackAPI.dll
+COPY --from=publish /src/publish .
+# ENTRYPOINT ["dotnet", "GBCashback.dll"]
+# heroku uses the following
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet GBCashback.dll
