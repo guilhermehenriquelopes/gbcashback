@@ -9,8 +9,8 @@ namespace GBCashback.Services.Interface
         Revendedor Atualizar(Revendedor revendedor);
         Revendedor Consultar(long id);
         Revendedor Deletar(long id);
-        Revendedor Ativar(long id);
-        Revendedor Inativar(long id);
-        IEnumerable<Revendedor> Consultar();        
+        Revendedor Ativar(string cpf);        
+        IEnumerable<Revendedor> Consultar();    
+        Revendedor ConsultarPorCpfSenha(string cpf, string senha);
     }
 }

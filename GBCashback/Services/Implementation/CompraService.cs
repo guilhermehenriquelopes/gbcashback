@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using GBCashback.Enums;
 using GBCashback.Models;
 using GBCashback.Repository.Interface;
 using GBCashback.Services.Interface;
-using GBCashback.Util;
 
 namespace GBCashback.Services.Implementation
 {

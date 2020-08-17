@@ -12,6 +12,7 @@ namespace GBCashback.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [AllowAnonymous]
     public class RevendedorController : ControllerBase
     {
         private readonly IMapper _mapper;
@@ -107,40 +108,14 @@ namespace GBCashback.Controllers
         }
 
         /// <summary>
-        /// Altera o status para Ativo de acordo com o Id informado
+        /// Altera o status para Ativo de acordo com o cpf informado
         /// </summary>        
-        [HttpPut("{id}/ativar")]
-        public IActionResult Ativar(long id)
+        [HttpPut("{cpf}/ativar")]
+        public IActionResult Ativar(string cpf)
         {
             try
             {
-                var revendedor = _service.Consultar(id);
-
-                if (revendedor == null)
-                    return NoContent();
-
-                return Ok(_service.Ativar(id));
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, new { error = ex.Message });
-            }
-        }
-
-        /// <summary>
-        /// Altera o status para Inativo de acordo com o Id informado
-        /// </summary>        
-        [HttpPut("{id}/inativar")]
-        public IActionResult Inativar(long id)
-        {
-            try
-            {
-                var revendedor = _service.Consultar(id);
-
-                if (revendedor == null)
-                    return NoContent();
-
-                return Ok(_service.Inativar(id));
+                return Ok(_service.Ativar(cpf));
             }
             catch (Exception ex)
             {

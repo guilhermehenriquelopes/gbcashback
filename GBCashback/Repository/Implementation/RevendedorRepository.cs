@@ -20,7 +20,7 @@ namespace GBCashback.Repository.Implementation
 
         public Revendedor ConsultarPorCpf(string cpf)
         {
-           try
+            try
             {
                 return _context.Revendedores.Where(x => x.CPF == cpf).FirstOrDefault();
             }
@@ -30,9 +30,24 @@ namespace GBCashback.Repository.Implementation
             }
         }
 
+        public Revendedor ConsultarPorCpfSenha(string cpf, string senha)
+        {
+            try
+            {
+                return _context.Revendedores.Where(x =>
+                    x.CPF == cpf
+                    && x.Senha == senha
+                ).FirstOrDefault();
+            }
+            catch (Exception)
+            {
+                throw new Exception(Mensagens.NenhumRegistroEncontrado);
+            }
+        }
+
         public Revendedor ConsultarPorEmail(string email)
         {
-           try
+            try
             {
                 return _context.Revendedores.Where(x => x.Email == email).FirstOrDefault();
             }

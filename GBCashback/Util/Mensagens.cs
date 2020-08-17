@@ -4,6 +4,7 @@ namespace GBCashback.Util
     {
         public static string NenhumRegistroEncontrado = "Nenhum registro encontrado";
         public static string FalhaLogin = "Nenhum usuário foi encontrado para os dados informados";
+        public static string UsuarioInativo = "O cadastro ainda não foi ativado";
         public static string CpfInvalido = "CPF inválido";
         public static string NomeInvalido = "Preencha o campo Nome com o nome completo";
         public static string EmailInvalido = "E-mail inválido";

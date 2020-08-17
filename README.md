@@ -1,27 +1,23 @@
 <h1>API - Cashback</h1>
 
-Esta API REST foi construída para atender os requisitos solicitados no processo seletivo
-da AsapLog.
-
-<p>
-Para facilitar os testes a aplicação foi publicada na plataforma Heroku, 
-e pode ser acessada através do link: <a href="https://seguradora.herokuapp.com/swagger-ui.html">https://seguradora.herokuapp.com/swagger-ui.html</a> 
-</p>
+API REST construída para retornar benefícios em forma de Cashback para revendedores de acordo com o volume de vendas.
 
 <h3>Ferramentas utilizadas: </h3>
 <ul>
-    <li>Spring Boot 2.2.4</li>
-    <li>Gradle</li>
-    <li>JDK 11</li>
-    <li>MongoDB 4.4</li>
+    <li>Linguagem: C# 8.0</li>
+    <li>Framework: ASP.NET Core 3.1</li>
+    <li>Banco de Dados: SQL Server 2019</li>    
     <li>Swagger 2</li>
-    <li>IDE: IntelliJ Communit</li>
+    <li>IDE: Visual Studio Code</li>
 </ul>
 
 <h3>Documentação com os Requisitos Solicitados:</h3>
 <ul>
-    <li>CRUD de clientes: <a href="https://seguradora.herokuapp.com/swagger-ui.html#/cliente-controller">swagger-ui.html#/cliente-controller</a></li>
-    <li>CRUD de apólices: <a href="https://seguradora.herokuapp.com/swagger-ui.html#/apolice-controller">swagger-ui.html#/apolice-controller</a></li>
+    <li>Rota para cadastrar um novo revendedor(a) exigindo no mínimo nome completo, CPF,
+e- mail e senha: <a href="">[POST] /api/Revendedor </a></li>
+    <li>Rota para ativar o cadastro de um revendedor(a): <a href="">[GET] /api/Revendedor/{cpf}/ativar</a></li>
+    <li>Rota para validar um login de um revendedor(a): <a href="">[POST] /api/Usuario</a></li>
+    
     <li>Consulta apólice por número: <a href="https://seguradora.herokuapp.com/swagger-ui.html#/gestao-controller/apoliceDetailUsingGET">swagger-ui.html#/gestao-controller</a></li>
     <li>Finalização: 
         <ul>

@@ -17,26 +17,19 @@ namespace GBCashback.Services.Implementation
             _repository = repository;
         }
 
-        public Revendedor Ativar(long id)
+        public Revendedor Ativar(string cpf)
         {
-            var revendedor = _repository.Consultar(id);
+            cpf = Geral.FormatarCpf(cpf);
+
+            if (!Geral.ValidarCpf(cpf))
+                throw new ArgumentException(Mensagens.CpfInvalido);
+
+            var revendedor = _repository.ConsultarPorCpf(cpf);
 
             if (revendedor == null)
                 throw new Exception(Mensagens.NenhumRegistroEncontrado);
 
             revendedor.Status = StatusRevendedor.Aprovado;
-
-            return _repository.Atualizar(revendedor);
-        }
-
-        public Revendedor Inativar(long id)
-        {
-            var revendedor = _repository.Consultar(id);
-
-            if (revendedor == null)
-                throw new Exception(Mensagens.NenhumRegistroEncontrado);
-
-            revendedor.Status = StatusRevendedor.Inativo;
 
             return _repository.Atualizar(revendedor);
         }
@@ -147,6 +140,16 @@ namespace GBCashback.Services.Implementation
         private Revendedor ConsultarPorEmail(string email)
         {
             var revendedor = _repository.ConsultarPorEmail(email);
+
+            return revendedor;
+        }
+
+        public Revendedor ConsultarPorCpfSenha(string cpf, string senha)
+        {
+            var revendedor = _repository.ConsultarPorCpfSenha(Geral.FormatarCpf(cpf), senha);
+
+            if (revendedor != null && revendedor.Status != StatusRevendedor.Aprovado)
+                throw new ArgumentException(Mensagens.UsuarioInativo);
 
             return revendedor;
         }

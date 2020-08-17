@@ -25,7 +25,7 @@ namespace GBCashback.Repository.Implementation
             try
             {
                 _context.Update(entity);
-                _context.SaveChangesAsync();
+                _context.SaveChanges();
 
                 return entity;
             }
@@ -45,7 +45,7 @@ namespace GBCashback.Repository.Implementation
             try
             {
                 _context.Set<TEntity>().Add(entity);
-                _context.SaveChangesAsync();
+                _context.SaveChanges();
 
                 return entity;
             }

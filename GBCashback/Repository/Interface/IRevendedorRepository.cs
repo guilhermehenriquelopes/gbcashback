@@ -6,5 +6,6 @@ namespace GBCashback.Repository.Interface
     {
         Revendedor ConsultarPorCpf(string cpf);
         Revendedor ConsultarPorEmail(string email);
+        Revendedor ConsultarPorCpfSenha(string cpf, string senha);
     }
 }
