@@ -20,4 +20,6 @@ e- mail e senha: <a href="">[POST] /api/Revendedor </a></li>
     <li>Rota para cadastrar uma nova compra exigindo no mínimo código, valor, data e CPF do revendedor(a): <a href="">[POST] /api/Compra</a></li>
     <li>Rota para listar as compras cadastradas: <a href="">[GET] /api/Compra</a></li>
     <li>Rota para listar as compras cadastradas por CPF: <a href="">[GET] /api/Compra/{cpf}</a></li>
+    <li>Rota para exibir o acumulado de cashback até o momento (banco da aplicação): <a href=""></a></li>
+    <li>Rota para exibir o acumulado de cashback até o momento (API Boticário): <a href=""></a></li>    
 </ul>
