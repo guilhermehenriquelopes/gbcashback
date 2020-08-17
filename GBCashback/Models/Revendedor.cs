@@ -1,30 +1,12 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 using GBCashback.Enums;
 using GBCashback.Models.Base;
-using GBCashback.Util;
 using Newtonsoft.Json;
 
 namespace GBCashback.Models
 {
     public class Revendedor : IEntity
     {
-        public Revendedor()
-        {
-
-        }
-
-        public Revendedor(string cpf, string nome, string email, string senha)
-        {
-            if (!Geral.ValidarCpf(cpf))
-                throw new ArgumentException(Mensagens.CpfInvalido);
-
-            this.CPF = cpf;
-            this.Nome = nome;
-            this.Email = email;
-            this.Senha = senha;
-        }
-
         public long Id { get; set; }
 
         [Required]

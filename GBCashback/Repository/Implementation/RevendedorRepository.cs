@@ -29,5 +29,17 @@ namespace GBCashback.Repository.Implementation
                 throw new Exception(Mensagens.NenhumRegistroEncontrado);
             }
         }
+
+        public Revendedor ConsultarPorEmail(string email)
+        {
+           try
+            {
+                return _context.Revendedores.Where(x => x.Email == email).FirstOrDefault();
+            }
+            catch (Exception)
+            {
+                throw new Exception(Mensagens.NenhumRegistroEncontrado);
+            }
+        }
     }
 }

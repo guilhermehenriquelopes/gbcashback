@@ -7,6 +7,7 @@ namespace GBCashback.Repository.Interface
     {
         TEntity Cadastrar(TEntity entity);
         TEntity Consultar(long id);
+        TEntity Deletar(long id);
         IEnumerable<TEntity> Consultar();
         TEntity Atualizar(TEntity entity);
     }

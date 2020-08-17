@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace GBCashback.Controllers
 {
     [ApiController]
-    [AllowAnonymous]
     [Route("api/[controller]")]
     public class RevendedorController : ControllerBase
     {
@@ -39,6 +38,10 @@ namespace GBCashback.Controllers
                 Revendedor revendedor = _mapper.Map<Revendedor>(dto);
 
                 return _service.Cadastrar(revendedor);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
             }
             catch (Exception ex)
             {
@@ -89,17 +92,13 @@ namespace GBCashback.Controllers
         [HttpPut]
         public IActionResult Atualizar(Revendedor revendedor)
         {
-            if (!ModelState.IsValid)
-                return BadRequest();
-
             try
             {
-                var entidade = _service.Consultar(revendedor.Id);
-
-                if (entidade == null)
-                    return NoContent();
-
-                return Ok(_service.Atualizar(entidade));
+                return Ok(_service.Atualizar(revendedor));
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
             }
             catch (Exception ex)
             {

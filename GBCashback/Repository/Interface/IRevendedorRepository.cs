@@ -5,5 +5,6 @@ namespace GBCashback.Repository.Interface
     public interface IRevendedorRepository : IRepository<Revendedor>
     {
         Revendedor ConsultarPorCpf(string cpf);
+        Revendedor ConsultarPorEmail(string email);
     }
 }

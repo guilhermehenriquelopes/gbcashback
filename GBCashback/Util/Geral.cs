@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace GBCashback.Util
 {
     public static class Geral
     {
         public static string Secret = "e5b3c21e1abe4d00a6a0eb8e2cf2ffe117b9a857b8e84037bc751c7bd55503be";
-        
+
         public static string ApenasNumeros(string str)
         {
             if (string.IsNullOrEmpty(str))
@@ -74,6 +75,17 @@ namespace GBCashback.Util
             digito = digito + resto.ToString();
 
             return cpf.EndsWith(digito);
+        }
+
+        public static bool ValidarEmail(string emailInput)
+        {
+            if (string.IsNullOrEmpty(emailInput)) return false;
+
+            Regex regex = new Regex(
+                @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
+                RegexOptions.CultureInvariant | RegexOptions.Singleline);
+
+            return regex.IsMatch(emailInput);
         }
     }
 }

@@ -43,28 +43,47 @@ namespace GBCashback.Services.Implementation
 
         public Revendedor Atualizar(Revendedor revendedor)
         {
-            if (!Geral.ValidarCpf(revendedor.CPF))
-                throw new Exception(Mensagens.CpfInvalido);
+            var entidade = _repository.Consultar(revendedor.Id);
+
+            if (entidade == null)
+                throw new ArgumentException(Mensagens.NenhumRegistroEncontrado);
 
             revendedor.CPF = Geral.FormatarCpf(revendedor.CPF);
 
-            var duplicidade = ConsultarPorCpf(revendedor.CPF);
+            if (entidade.CPF != revendedor.CPF)
+                throw new ArgumentException(Mensagens.CpfDiferente);
 
-            if (duplicidade != null && duplicidade.Id != revendedor.Id)
-                throw new Exception(Mensagens.CpfJaCadastrado);
+            if (!Geral.ValidarEmail(revendedor.Email))
+                throw new ArgumentException(Mensagens.EmailInvalido);
 
-            return _repository.Atualizar(revendedor);
+            var porEmail = ConsultarPorEmail(revendedor.Email);
+
+            if (porEmail != null && porEmail.Id != entidade.Id)
+                throw new ArgumentException(Mensagens.EmailJaCadastrado);
+
+            entidade.Nome = revendedor.Nome;
+            entidade.Email = revendedor.Email;
+            entidade.Senha = revendedor.Senha;
+            entidade.Status = revendedor.Status;
+
+            return _repository.Atualizar(entidade);
         }
 
         public Revendedor Cadastrar(Revendedor revendedor)
         {
             if (!Geral.ValidarCpf(revendedor.CPF))
-                throw new Exception(Mensagens.CpfInvalido);
+                throw new ArgumentException(Mensagens.CpfInvalido);
+
+            if (!Geral.ValidarEmail(revendedor.Email))
+                throw new ArgumentException(Mensagens.EmailInvalido);
 
             string cpf = Geral.FormatarCpf(revendedor.CPF);
 
             if (ConsultarPorCpf(cpf) != null)
-                throw new Exception(Mensagens.CpfJaCadastrado);
+                throw new ArgumentException(Mensagens.CpfJaCadastrado);
+
+            if (ConsultarPorEmail(revendedor.Email) != null)
+                throw new ArgumentException(Mensagens.EmailJaCadastrado);
 
             revendedor.CPF = Geral.FormatarCpf(revendedor.CPF);
             revendedor.Status = obtemStatusParaCadastro(revendedor.CPF);
@@ -94,16 +113,14 @@ namespace GBCashback.Services.Implementation
             return revendedor;
         }
 
-        public Revendedor ConsultarPorCpf(string cpf)
-        {
-            var revendedor = _repository.ConsultarPorCpf(cpf);
-
-            return revendedor;
-        }
-
         public Revendedor Deletar(long id)
         {
-            throw new NotImplementedException();
+            var entidade = _repository.Consultar(id);
+
+            if (entidade == null)
+                throw new ArgumentException(Mensagens.NenhumRegistroEncontrado);
+
+            return _repository.Deletar(id);
         }
 
         private StatusRevendedor obtemStatusParaCadastro(string cpf)
@@ -118,6 +135,20 @@ namespace GBCashback.Services.Implementation
             {
                 return StatusRevendedor.EmValidacao;
             }
+        }
+
+        private Revendedor ConsultarPorCpf(string cpf)
+        {
+            var revendedor = _repository.ConsultarPorCpf(cpf);
+
+            return revendedor;
+        }
+
+        private Revendedor ConsultarPorEmail(string email)
+        {
+            var revendedor = _repository.ConsultarPorEmail(email);
+
+            return revendedor;
         }
     }
 }

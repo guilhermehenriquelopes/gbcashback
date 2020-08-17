@@ -78,5 +78,22 @@ namespace GBCashback.Repository.Implementation
                 throw new Exception(Mensagens.NenhumRegistroEncontrado);
             }
         }
+
+        public TEntity Deletar(long id)
+        {
+            var entity = _context.Set<TEntity>().Find(id);
+
+            try
+            {
+                _context.Remove(entity);
+                _context.SaveChangesAsync();
+
+                return entity;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"{nameof(entity)} " + Mensagens.EntidadeNaoPodeSerSalva + " - Error: " + ex.Message);
+            }
+        }
     }
 }
