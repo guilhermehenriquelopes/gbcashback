@@ -2,6 +2,8 @@
 
 API REST construída para retornar benefícios em forma de Cashback para revendedores de acordo com o volume de vendas.
 
+Para facilitar os testes a aplicação foi publicada na plataforma Heroku, e pode ser acessada através do link: https://gbcashback.herokuapp.com/
+
 <h3>Ferramentas utilizadas</h3>
 <ul>
     <li>Linguagem: C# 8.0</li>
@@ -12,19 +14,18 @@ API REST construída para retornar benefícios em forma de Cashback para revende
 </ul>
 
 <h3>Requisitos back-end</h3>
+
+<i><b>Obs.: qualquer cadastro com o CPF 153.509.460-56 entra automaticamente com o status "Ativado"</b></i>
+
 <ul>
     <li>Rota para cadastrar um novo revendedor(a) exigindo no mínimo nome completo, CPF,
-e- mail e senha: <a href="">[POST] /api/Revendedor </a></li>
-    <li>Rota para ativar o cadastro de um revendedor(a): <a href="">[GET] /api/Revendedor/{cpf}/ativar</a></li>
-    <li>Rota para validar um login de um revendedor(a): <a href="">[POST] /api/Usuario</a></li>    
-    <li>Rota para cadastrar uma nova compra exigindo no mínimo código, valor, data e CPF do revendedor(a): <a href="">[POST] /api/Compra</a></li>
-    <li>Rota para listar as compras cadastradas: <a href="">[GET] /api/Compra</a></li>
-    <li>Rota para listar as compras cadastradas por CPF: <a href="">[GET] /api/Compra/{cpf}</a></li>
-    <li>Rota para exibir o acumulado de cashback até o momento (banco da aplicação): <a href=""></a></li>
-    <li>Rota para exibir o acumulado de cashback até o momento (API Boticário): <a href=""></a></li>    
+e- mail e senha: <b>[POST] /api/Revendedor </b></li>
+    <li>Rota para ativar o cadastro de um revendedor(a): <b>[GET] /api/Revendedor/{cpf}/ativar</b></li>
+    <li>Rota para validar um login de um revendedor(a): <b>[POST] /api/Usuario</b></li>    
+    <li>Rota para cadastrar uma nova compra exigindo no mínimo código, valor, data e CPF do revendedor(a): <b>[POST] /api/Compra</b></li>
+    <li>Rota para listar as compras cadastradas: <b>[GET] /api/Compra</b></li>
+    <li>Rota para listar as compras cadastradas por CPF: <b>[GET] /api/Compra/{cpf}</b></li>
+    <li>Rota para exibir o acumulado de cashback até o momento (banco da aplicação): <b>/api/Conta/{cpf}/acumulado</b></li>
+    <li>Rota para exibir o acumulado de cashback até o momento (API Boticário): <b>/api/Conta/{cpf}/acumuladoapi</b></li>
 </ul>
 
-<h3>Diferenciais</h3>
-<ul>
-    <li>Testes unitários: </li>
-</ul>
