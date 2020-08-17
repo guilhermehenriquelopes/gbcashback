@@ -29,3 +29,24 @@ e- mail e senha: <b>[POST] /api/Revendedor </b></li>
     <li>Rota para exibir o acumulado de cashback até o momento (API Boticário): <b>/api/Conta/{cpf}/acumuladoapi</b></li>
 </ul>
 
+<h3>Diferenciais</h3>
+<ul>
+    <li>Autenticação JWT
+        <br /><p>Para autenticar na API é necessário enviar o Tokek gerado pelo método [POST] /api/Usuario, informando cpf e senha de um Revendedor (Ativado)</p>
+        <ul>
+            <li>[POST] /api/Revendedor - Método sem autenticação</li>
+            <li>[POST] /api/Compra - Método sem autenticação</li>
+            <li>[POST] /api/Usuario - Método sem autenticação</li>
+            <li>[POST] /api/Conta/{cpf}/acumuladoapi (método retorna o consumo da API do Boticário)</li>                        
+        </ul>
+    </li>
+</ul>
+
+<h3>Utilizando o token</h3>
+<p>Usuário já criado no banco: cpf = 634.696.940-44, senha = 123456</p>
+<ul>
+    <li>Pela interface do Swagger clique no botão <b>Authorize</b></li>
+    <li>Na tela que abrir digite <b>Bearer {token}</b></li>
+        <ul><li>Ex.: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI66IjE1My41MDkuNDYwLTU2IiwibmJmIjoxNTk3Njk0MjU5LCJleHAiO </li></ul>
+    <li>Via outros clients, informe o Bearer através do header authorization</li>
+</ul>
