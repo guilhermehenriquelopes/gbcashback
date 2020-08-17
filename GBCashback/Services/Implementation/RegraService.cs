@@ -1,10 +1,7 @@
-using System;
 using System.Collections.Generic;
-using GBCashback.Enums;
 using GBCashback.Models;
 using GBCashback.Repository.Interface;
 using GBCashback.Services.Interface;
-using GBCashback.Util;
 
 namespace GBCashback.Services.Implementation
 {
@@ -19,27 +16,27 @@ namespace GBCashback.Services.Implementation
 
         public Regra Atualizar(Regra regra)
         {
-            throw new NotImplementedException();
+            return _repository.Atualizar(regra);
         }
 
         public Regra Cadastrar(Regra regra)
         {
-            throw new NotImplementedException();
-        }
-
-        public Regra Consultar(long id)
-        {
-            throw new NotImplementedException();
+            return _repository.Cadastrar(regra);
         }
 
         public IEnumerable<Regra> Consultar()
         {
-            throw new NotImplementedException();
+            return _repository.Consultar();
+        }
+
+        public Regra Consultar(long id)
+        {
+            return _repository.Consultar(id);
         }
 
         public Regra Deletar(long id)
         {
-            throw new NotImplementedException();
+            return _repository.Deletar(id);
         }
     }
 }

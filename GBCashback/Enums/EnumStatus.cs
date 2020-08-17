@@ -1,11 +1,9 @@
-using System.ComponentModel;
-
 namespace GBCashback.Enums
 {
-    public enum StatusRevendedor
+    public enum EnumStatus
     {
         EmValidacao = 0,
         Aprovado = 1,
-        Inativo = 2
+        Utilizado = 2
     }
 }

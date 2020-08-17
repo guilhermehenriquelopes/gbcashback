@@ -28,6 +28,6 @@ namespace GBCashback.Models
 
         [Required]
         [JsonIgnore]
-        public StatusRevendedor Status { get; set; } = StatusRevendedor.EmValidacao;
+        public EnumStatus Status { get; set; } = EnumStatus.EmValidacao;
     }
 }

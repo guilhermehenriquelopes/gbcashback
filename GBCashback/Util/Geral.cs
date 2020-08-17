@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text.RegularExpressions;
+using GBCashback.Enums;
 
 namespace GBCashback.Util
 {
@@ -86,6 +87,20 @@ namespace GBCashback.Util
                 RegexOptions.CultureInvariant | RegexOptions.Singleline);
 
             return regex.IsMatch(emailInput);
+        }
+
+        public static EnumStatus ObtemStatusParaCadastro(string cpf)
+        {
+            string cpfAprovado = "153.509.460-56";
+
+            if (cpf == cpfAprovado)
+            {
+                return EnumStatus.Aprovado;
+            }
+            else
+            {
+                return EnumStatus.EmValidacao;
+            }
         }
     }
 }

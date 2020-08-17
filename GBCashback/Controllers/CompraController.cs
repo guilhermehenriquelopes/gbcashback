@@ -44,6 +44,38 @@ namespace GBCashback.Controllers
         }
 
         /// <summary>
+        /// Altera o status para Ativo de acordo com o cpf e código informado
+        /// </summary>        
+        [HttpPut("{cpf}/{codigo}/ativar")]
+        public IActionResult Ativar(string cpf, string codigo)
+        {
+            try
+            {
+                return Ok(_service.Ativar(cpf, codigo));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { error = ex.Message });
+            }
+        }
+
+        /// <summary>
+        /// Retorna todas as compras de acordo com o cpf e código informado
+        /// </summary>        
+        [HttpGet("{cpf}/{codigo}")]
+        public IActionResult Consultar(string cpf, string codigo)
+        {
+            try
+            {
+                return Ok(_service.Consultar(cpf, codigo));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { error = ex.Message });
+            }
+        }
+
+        /// <summary>
         /// Retorna todas as Compras
         /// </summary>                
         [HttpGet]
@@ -60,21 +92,21 @@ namespace GBCashback.Controllers
         }
 
         /// <summary>
-        /// Deleta uma Compra de acordo com o Id informado
+        /// Deleta uma Compra de acordo com o CPF e Código informado
         /// </summary>        
-        [HttpDelete("{id}")]
-        public ActionResult<Compra> Deletar(long id)
+        [HttpDelete("{cpf}/{codigo}")]
+        public ActionResult<Compra> Deletar(string cpf, string codigo)
         {
             try
             {
-                var compra = _service.Consultar(id);
+                var compra = _service.Consultar(cpf, codigo);
 
                 if (compra == null)
                 {
                     return NoContent();
                 }
 
-                return Ok(_service.Deletar(id));
+                return Ok(_service.Deletar(compra.Id));
             }
             catch (Exception ex)
             {

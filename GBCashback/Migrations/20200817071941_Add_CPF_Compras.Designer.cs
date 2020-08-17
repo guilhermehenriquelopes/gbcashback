@@ -4,14 +4,16 @@ using GBCashback.Models.Base;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GBCashback.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20200817071941_Add_CPF_Compras")]
+    partial class Add_CPF_Compras
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,21 +32,11 @@ namespace GBCashback.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("CashbackPorcentagem")
-                        .HasColumnType("decimal(3,2)");
-
-                    b.Property<decimal>("CashbackValor")
+                    b.Property<decimal>("Cashback")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Codigo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Data")
                         .HasColumnType("datetime2");
-
-                    b.Property<long>("RegraId")
-                        .HasColumnType("bigint");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -52,9 +44,12 @@ namespace GBCashback.Migrations
                     b.Property<decimal>("Valor")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<long>("regraId")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("RegraId");
+                    b.HasIndex("regraId");
 
                     b.ToTable("Compras");
                 });
@@ -119,9 +114,9 @@ namespace GBCashback.Migrations
 
             modelBuilder.Entity("GBCashback.Models.Compra", b =>
                 {
-                    b.HasOne("GBCashback.Models.Regra", "Regra")
+                    b.HasOne("GBCashback.Models.Regra", "regra")
                         .WithMany()
-                        .HasForeignKey("RegraId")
+                        .HasForeignKey("regraId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
