@@ -13,7 +13,7 @@ namespace GBCashback.DTO
         public string CPF { get; set; }
 
         [Required]
-        [Range(0, long.MaxValue)]
+        [Range(1, long.MaxValue)]
         [Column(TypeName = "decimal(18,2)")]
         public decimal Valor { get; set; }
 

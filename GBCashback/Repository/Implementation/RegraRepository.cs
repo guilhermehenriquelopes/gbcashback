@@ -20,10 +20,24 @@ namespace GBCashback.Repository.Implementation
         {
             try
             {
-                return _context.Regras.Where(x =>
-                    x.ValorInicial <= valor
-                    && x.ValorFinal > valor
-                ).FirstOrDefault();
+                decimal? max = _context.Regras.Max(x => x.ValorFinal);
+                decimal? min = _context.Regras.Min(x => x.ValorInicial);
+
+                if (max != null && valor > max)
+                {
+                    return _context.Regras.Where(x => x.ValorFinal == 0).FirstOrDefault();
+                }
+                else if (min != null && valor < min)
+                {
+                    return _context.Regras.Where(x => x.ValorInicial == 0).FirstOrDefault();
+                }
+                else
+                {
+                    return _context.Regras.Where(x =>
+                        x.ValorInicial <= valor
+                        && x.ValorFinal > valor
+                    ).FirstOrDefault();
+                }
             }
             catch (Exception)
             {

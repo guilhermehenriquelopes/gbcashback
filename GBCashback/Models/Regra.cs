@@ -9,7 +9,7 @@ namespace GBCashback.Models
 
         [Required]
         [Range(0, long.MaxValue)]
-        [Column(TypeName = "decimal(18,2)")]
+        [Column(TypeName = "numeric(18,2)")]
         public decimal ValorInicial { get; set; }
 
         [Required]
@@ -19,7 +19,7 @@ namespace GBCashback.Models
 
         [Required]
         [Range(0, 100)]         
-        [Column(TypeName = "decimal(3,2)")]
+        [Column(TypeName = "decimal(5,2)")]
         public decimal Porcentagem { get; set; }
     }
 }

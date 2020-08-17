@@ -25,7 +25,7 @@ namespace GBCashback.Models
 
         [Required]
         [Range(0, 100)]
-        [Column(TypeName = "decimal(3,2)")]
+        [Column(TypeName = "decimal(5,2)")]
         public decimal CashbackPorcentagem { get; set; }
 
         [Required]

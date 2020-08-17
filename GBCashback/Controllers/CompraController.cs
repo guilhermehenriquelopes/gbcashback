@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using AutoMapper;
+using GBCashback.DTO;
 using GBCashback.Models;
 using GBCashback.Services.Interface;
 using Microsoft.AspNetCore.Authorization;
@@ -27,10 +28,12 @@ namespace GBCashback.Controllers
         /// Cadastra uma nova Compra
         /// </summary>                
         [HttpPost]
-        public ActionResult<Compra> Cadastrar(Compra compra)
+        public ActionResult<Compra> Cadastrar(CompraDTO dto)
         {
             try
             {
+                Compra compra = _mapper.Map<Compra>(dto);
+
                 return _service.Cadastrar(compra);
             }
             catch (ArgumentException ex)
