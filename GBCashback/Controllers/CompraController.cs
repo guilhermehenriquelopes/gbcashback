@@ -63,14 +63,14 @@ namespace GBCashback.Controllers
         }
 
         /// <summary>
-        /// Retorna todas as compras de acordo com o cpf e código informado
+        /// Retorna todas as compras de acordo com o CPF informado
         /// </summary>        
-        [HttpGet("{cpf}/{codigo}")]
-        public IActionResult Consultar(string cpf, string codigo)
+        [HttpGet("{cpf}")]
+        public IActionResult Consultar(string cpf)
         {
             try
             {
-                return Ok(_service.Consultar(cpf, codigo));
+                return Ok(_service.Consultar(cpf));
             }
             catch (Exception ex)
             {
@@ -102,14 +102,7 @@ namespace GBCashback.Controllers
         {
             try
             {
-                var compra = _service.Consultar(cpf, codigo);
-
-                if (compra == null)
-                {
-                    return NoContent();
-                }
-
-                return Ok(_service.Deletar(compra.Id));
+                return Ok(_service.Deletar(cpf, codigo));
             }
             catch (Exception ex)
             {

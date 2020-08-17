@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using GBCashback.DTO;
 using GBCashback.Enums;
 using GBCashback.Models;
 using GBCashback.Repository.Interface;
@@ -19,6 +20,20 @@ namespace GBCashback.Services.Implementation
             _repository = repository;
             _revendedorRepository = revendedorRepository;
             _regraRepository = regraRepository;
+        }
+
+        public AcumuladoDTO Acumulado(string cpf)
+        {
+            cpf = Geral.FormatarCpf(cpf);
+            var revendedor = _revendedorRepository.ConsultarPorCpf(cpf);
+
+            if (revendedor == null)
+                throw new ArgumentException(Mensagens.NenhumRevendedorEncontrado);
+
+            if (revendedor.Status != EnumStatus.Aprovado)
+                throw new ArgumentException(Mensagens.UsuarioInativo);
+
+            return _repository.Acumulado(cpf);
         }
 
         public Compra Ativar(string cpf, string codigo)
@@ -70,27 +85,17 @@ namespace GBCashback.Services.Implementation
             return _repository.Cadastrar(compra);
         }
 
-        public Compra Consultar(long id)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<Compra> Consultar()
         {
-            throw new NotImplementedException();
-        }
-
-        public Compra Consultar(string cpf, string codigo)
-        {
-            throw new NotImplementedException();
+            return _repository.Consultar();
         }
 
         public IEnumerable<Compra> Consultar(string cpf)
         {
-            throw new NotImplementedException();
+            return _repository.ConsultarPorCpf(cpf);
         }
 
-        public Compra Deletar(long id)
+        public Compra Deletar(string cpf, string codigo)
         {
             throw new NotImplementedException();
         }

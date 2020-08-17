@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using GBCashback.DTO;
 using GBCashback.Models;
 
 namespace GBCashback.Services.Interface
@@ -7,10 +8,10 @@ namespace GBCashback.Services.Interface
     {
         Compra Cadastrar(Compra compra);
         Compra Atualizar(Compra compra);        
-        Compra Consultar(string cpf, string codigo);
-        Compra Deletar(long id);
+        Compra Deletar(string cpf, string codigo);
         IEnumerable<Compra> Consultar(string cpf);
         IEnumerable<Compra> Consultar();
-        Compra Ativar(string cpf, string codigo);        
+        Compra Ativar(string cpf, string codigo);
+        AcumuladoDTO Acumulado(string cpf);
     }
 }

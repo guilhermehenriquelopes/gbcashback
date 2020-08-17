@@ -97,6 +97,7 @@ namespace GBCashback
             services.AddTransient<IRevendedorService, RevendedorService>();
             services.AddTransient<ICompraService, CompraService>();
             services.AddTransient<IRegraService, RegraService>();
+            services.AddTransient<IApiBoticarioService, ApiBoticarioService>();
 
             services
                 .AddControllers()

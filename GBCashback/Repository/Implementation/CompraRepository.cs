@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using GBCashback.DTO;
+using GBCashback.Enums;
 using GBCashback.Models;
 using GBCashback.Models.Base;
 using GBCashback.Repository.Interface;
@@ -16,7 +18,6 @@ namespace GBCashback.Repository.Implementation
         {
             _context = context;
         }
-
 
         public Compra ConsultarPorCpfCodigo(string cpf, string codigo)
         {
@@ -40,6 +41,27 @@ namespace GBCashback.Repository.Implementation
                 return _context.Compras.Where(x =>
                     x.CPF == cpf
                 ).ToList();
+            }
+            catch (Exception)
+            {
+                throw new Exception(Mensagens.NenhumRegistroEncontrado);
+            }
+        }
+
+        public AcumuladoDTO Acumulado(string cpf)
+        {
+            try
+            {
+                var response = new AcumuladoDTO() { CPF = cpf, Credit = 0 };
+
+                decimal? acumulado = _context.Compras
+                .Where(x => x.CPF == cpf && x.Status == EnumStatus.Aprovado)
+                .Sum(x => x.CashbackValor);
+
+                if (acumulado != null)
+                    response.Credit = acumulado.Value;
+
+                return response;
             }
             catch (Exception)
             {
