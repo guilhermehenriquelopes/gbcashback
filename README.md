@@ -40,6 +40,8 @@ e- mail e senha: <b>[POST] /api/Revendedor </b></li>
             <li>[POST] /api/Conta/{cpf}/acumuladoapi (método retorna o consumo da API do Boticário)</li>                        
         </ul>
     </li>
+    <li>Testes Unitários: <a href=""><a/></li>
+    <li>Testes de Integração: <a href=""><a/></li>
 </ul>
 
 <h3>Utilizando o token</h3>
