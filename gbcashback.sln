@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GBCashback.Tests", "GBCashback.Tests\GBCashback.Tests.csproj", "{280B0DA0-C906-4D2F-A5A0-03B9016EE31E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GBCashback", "GBCashback\GBCashback.csproj", "{64BCC1AC-232F-4892-826B-D0AC264FF9D7}"
 EndProject
 Global
