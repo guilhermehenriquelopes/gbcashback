@@ -10,6 +10,8 @@ namespace GBCashback.Settings
         {
             CreateMap<Revendedor, RevendedorDTO>();
             CreateMap<RevendedorDTO, Revendedor>();
+            CreateMap<Compra, CompraDTO>();
+            CreateMap<CompraDTO, Compra>();
         }
     }
 }

@@ -91,8 +91,12 @@ namespace GBCashback
             // Dependencies
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<IRevendedorRepository, RevendedorRepository>();
+            services.AddTransient<ICompraRepository, CompraRepository>();
+            services.AddTransient<IRegraRepository, RegraRepository>();
 
             services.AddTransient<IRevendedorService, RevendedorService>();
+            services.AddTransient<ICompraService, CompraService>();
+            services.AddTransient<IRegraService, RegraService>();
 
             services
                 .AddControllers()
