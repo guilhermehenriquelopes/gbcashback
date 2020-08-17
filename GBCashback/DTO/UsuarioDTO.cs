@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace GBCashback.Models
+namespace GBCashback.DTO
 {
-   public class Usuario
+   public class UsuarioDTO
     {
         [Required]
         public string CPF { get; set; }

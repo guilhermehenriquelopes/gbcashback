@@ -11,8 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GBCashback.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
-    [AllowAnonymous]
+    [Route("api/[controller]")]    
     public class RevendedorController : ControllerBase
     {
         private readonly IMapper _mapper;

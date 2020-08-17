@@ -11,8 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GBCashback.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    [AllowAnonymous]
+    [ApiController]    
     public class CompraController : ControllerBase
     {
         private readonly IMapper _mapper;
@@ -28,6 +27,7 @@ namespace GBCashback.Controllers
         /// Cadastra uma nova Compra
         /// </summary>                
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult<Compra> Cadastrar(CompraDTO dto)
         {
             try

@@ -1,5 +1,5 @@
 using System;
-using GBCashback.Models;
+using GBCashback.DTO;
 using GBCashback.Services.Interface;
 using GBCashback.Util;
 using Microsoft.AspNetCore.Authorization;
@@ -8,8 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GBCashback.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    [AllowAnonymous]
+    [ApiController]    
     public class UsuarioController : ControllerBase
     {
         private readonly IRevendedorService _service;
@@ -21,9 +20,10 @@ namespace GBCashback.Controllers
 
         /// <summary>
         /// Logar na aplicação
-        /// </summary>        
-        [HttpPost]
-        public IActionResult Logar(Usuario usuario)
+        /// </summary>                
+        [HttpPost]        
+        [AllowAnonymous]
+        public IActionResult Logar(UsuarioDTO usuario)
         {
             try
             {

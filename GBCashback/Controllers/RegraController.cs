@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using AutoMapper;
 using GBCashback.Models;
 using GBCashback.Services.Interface;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GBCashback.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    [AllowAnonymous]
+    [ApiController]    
     public class RegraController : ControllerBase
     {
         private readonly IMapper _mapper;

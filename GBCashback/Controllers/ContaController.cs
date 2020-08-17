@@ -7,15 +7,12 @@ using GBCashback.Models;
 using GBCashback.Services.Interface;
 using GBCashback.Util;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 
 namespace GBCashback.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
-    [AllowAnonymous]
+    [Route("api/[controller]")]    
     public class ContaController : ControllerBase
     {
         private readonly IApiBoticarioService _apiService;
@@ -31,11 +28,12 @@ namespace GBCashback.Controllers
         /// Retorna o saldo acumulado na API externa
         /// </summary>        
         [HttpGet("{cpf}/acumuladoapi")]
+        [AllowAnonymous]
         public ActionResult<AcumuladoDTO> AcumuladoApi(string cpf)
         {
             if (!Geral.ValidarCpf(cpf))
                 return BadRequest(Mensagens.CpfInvalido);
-                
+
             return Ok(_apiService.Acumulado(cpf));
         }
 
