@@ -20,9 +20,9 @@ namespace GBCashback.Controllers
 
         /// <summary>
         /// Logar na aplicação
-        /// </summary>                
+        /// </summary> 
+        [AllowAnonymous]               
         [HttpPost]        
-        [AllowAnonymous]
         public IActionResult Logar(UsuarioDTO usuario)
         {
             try
