@@ -23,7 +23,7 @@ namespace GBCashback.Repository.Implementation
                 decimal? max = _context.Regras.Max(x => x.ValorFinal);
                 decimal? min = _context.Regras.Min(x => x.ValorInicial);
 
-                if (max != null && valor > max)
+                if (max != null && valor >= max)
                 {
                     return _context.Regras.Where(x => x.ValorFinal == 0).FirstOrDefault();
                 }

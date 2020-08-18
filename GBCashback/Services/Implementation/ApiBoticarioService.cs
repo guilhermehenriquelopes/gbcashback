@@ -11,28 +11,34 @@ namespace GBCashback.Services.Implementation
 {
     public class ApiBoticarioService : IApiBoticarioService
     {
-        private readonly HttpClient _httpClient;
-
-        public ApiBoticarioService()
+        public AcumuladoDTO Acumulado(string cpf)
         {
-            _httpClient = new HttpClient();
-        }
-
-        public async Task<AcumuladoDTO> Acumulado(string cpf)
-        {
-            _httpClient.DefaultRequestHeaders.Accept.Clear();
-            _httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
-            _httpClient.DefaultRequestHeaders.Add("Token", "ZXPURQOARHiMc6Y0flhRC1LVlZQVFRnm");
-
-            _httpClient.BaseAddress = new Uri("https://mdaqk8ek5j.execute-api.us-east-1.amazonaws.com/v1/");
-
-            var streamTask = _httpClient.GetStreamAsync("cashback?cpf=" + Geral.ApenasNumeros(cpf));
-            var response = await JsonSerializer.DeserializeAsync<AcumuladoResponse>(await streamTask);
-
-            return new AcumuladoDTO(){
+            var acumulado = new AcumuladoDTO()
+            {
                 CPF = cpf,
-                Credit = response.body.credit
+                Credit = 0
             };
+
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Add("Accept", "application/json");
+                client.DefaultRequestHeaders.Add("Token", "ZXPURQOARHiMc6Y0flhRC1LVlZQVFRnm");
+
+                client.BaseAddress = new Uri("https://mdaqk8ek5j.execute-api.us-east-1.amazonaws.com/v1/");
+
+                HttpResponseMessage response = client.GetAsync("cashback?cpf=" + Geral.ApenasNumeros(cpf)).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string json = response.Content.ReadAsStringAsync().Result;
+                    var content = JsonSerializer.Deserialize<AcumuladoResponse>(json);
+
+                    acumulado.Credit = content.body.credit;                    
+                }
+            }
+
+            return acumulado;
         }
     }
 }
